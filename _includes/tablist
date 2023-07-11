@@ -14,21 +14,21 @@
         <nav class="tablist-nav">
           <ul class="visible-links">
             {% for tab in tablist %}
-			  {% assign class = tablist_name | append: "-id-tab" %}
-			  {% if include.id %}
+              {% assign class = tablist_name | append: "-id-tab" %}
+              {% if include.id %}
                 {% if tab == page[include.id].first %}
-			      {% assign class = class | append: " active" %}
-				{% endif %}
-			  {% else %}
+                  {% assign class = class | append: " active" %}
+                {% endif %}
+              {% else %}
                 {% if tab == page.tablist.first %}
-			      {% assign class = class | append: " active" %}
-				{% endif %}
-			  {% endif %}
+                  {% assign class = class | append: " active" %}
+                {% endif %}
+              {% endif %}
 			    
               <li class="tablist__menu-item">
                 <a
-				  class="{{ class }}"
-				  onClick="tablistClickHandle(event, '{{ tablist_name }}', '{{ tab.title }}')"
+                  class="{{ class }}"
+                  onClick="tablistClickHandle(event, '{{ tablist_name }}', '{{ tab.title }}')"
                 >
                 {{tab.title}}
                 </a>
