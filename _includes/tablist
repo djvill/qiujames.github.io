@@ -7,6 +7,7 @@
   {% assign tablist_name = "tablist" %}
 {% endif %}
 
+
 <div class="tablist-container">
   <div class="tablist">
     <div class="tablist__inner-wrap">
@@ -15,14 +16,8 @@
           <ul class="visible-links">
             {% for tab in tablist %}
               {% assign class = tablist_name | append: "-id-tab" %}
-              {% if include.id %}
-                {% if tab == page[include.id].first %}
-                  {% assign class = class | append: " active" %}
-                {% endif %}
-              {% else %}
-                {% if tab == page.tablist.first %}
-                  {% assign class = class | append: " active" %}
-                {% endif %}
+              {% if tab == tablist.first %}
+                {% assign class = class | append: " active" %}
               {% endif %}
 			    
               <li class="tablist__menu-item">
@@ -54,7 +49,7 @@
       {% if tab == page.tablist.first %}
         {% assign display = "block" %}
       {% endif %}
-      {% include tablist_content id=include.id tablist_name="tablist" tab=tab display=display %}
+      {% include tablist_content id=include.id tablist_name=tablist_name tab=tab display=display %}
     {% endfor %}
   {% endif %}
 
