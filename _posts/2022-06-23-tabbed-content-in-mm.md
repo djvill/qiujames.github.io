@@ -2,6 +2,7 @@
 title: "Tabbed Content in Minimal Mistakes"
 toc: true
 hello-world-tablist: 
+# tablist: 
   - title: Python
     language: python
     code_content: |
@@ -104,7 +105,14 @@ written in various different programming languages:
 {% include tablist id="hello-world-tablist" %}
 
 
+### Tablist based on collection
+
+{% include tablist coll=site.new_tabs %}
+
 ## Usage
+
+
+### Tablist in YAML
 
 Generate a `tablist` element with content separated by titled tabs.
 Each tabbed content element may contain syntactically highlighted
@@ -159,6 +167,25 @@ Tablists were heavily inspired by the
 Jekyll helper.  
 We also stylistically follow the Minimal Mistakes documentation.
 {: .notice--success}
+
+
+### Tablist as collection
+
+We can also set up a tablist as a [Jekyll collection](https://jekyllrb.com/docs/collections/).
+
+To use:
+
+1. Create a directory (just under the root) that starts with `_`
+1. Populate with `.md` files:
+    - The YAML header's `title` field will become the tab title
+    - File content will become tab content
+1. Define the collection in `_config.yml` (https://jekyllrb.com/docs/collections/#setup)
+1. Drop-in the tablist include in the body where you'd like it to appear.
+
+```liquid
+{% raw %}{% include tablist coll=site.<coll-title> %}{% endraw %}
+```
+
 
 ## Implementation
 

@@ -1,4 +1,5 @@
-<div id="{{ include.tablist_name }}-{{ tab.title }}"
+{% assign tab_id = tab.title | replace: " ", "_" | downcase %}
+<div id="{{ include.tablist_name }}-{{ tab_id }}"
   class="{{ include.tablist_name }}-id-content tablist-content"
   markdown="1"
   style="display:{{ include.display }}">

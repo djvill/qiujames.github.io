@@ -122,3 +122,5 @@ collections:
     output: true
     permalink: /:collection/:path/
     related: false
+  new_tabs:
+    output: true
