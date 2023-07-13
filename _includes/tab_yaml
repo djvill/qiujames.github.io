@@ -1,18 +1,16 @@
 {% assign tab_id = tab.title | replace: " ", "_" | downcase %}
-<div id="{{ include.tablist_name }}-{{ tab_id }}"
-  class="{{ include.tablist_name }}-id-content tablist-content"
+<div id="{{ include.tablist_tag }}-{{ tab_id }}"
+  class="{{ include.tablist_tag }}-id-content tablist-content"
   markdown="1"
   style="display:{{ include.display }}">
 
 {% if tab.content_md %}
-  {% include_relative tabbed_content/{{ tab.content_md }} %}
+  {% include_relative {{ tab.content_md }} %}
 {% endif %}
 
 {% if tab.code_content %}
-  ```{% if tab.language %}
-    {{ tab.language }}
-  {% endif %}
-  {{ tab.code_content }}```
+```{% if tab.language %}{{ tab.language }}{% endif %}
+{{ tab.code_content }}```
 {% endif %}
 
 {% if tab.text_content %}

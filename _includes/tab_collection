@@ -1,5 +1,6 @@
-<div id="{{ include.tablist_name }}-{{ include.tab_id }}"
-  class="{{ include.tablist_name }}-id-content tablist-content"
+{% assign tab_id = tab.url | remove: tablist_name | remove: "/" | downcase %}
+<div id="tablist-{{ include.tablist_name }}-{{ include.tab_id }}"
+  class="tablist-{{ include.tablist_name }}-id-content tablist-content"
   markdown="1"
   style="display:{{ include.display }}">
 

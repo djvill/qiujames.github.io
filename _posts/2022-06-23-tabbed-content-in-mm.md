@@ -13,7 +13,7 @@ hello-world-tablist:
       You can add [links](https://qiujames.github.io/) or even images!
       ![birdie!](/assets/images/favicon.ico)
   - title: Another Markdown
-    content_md: code.md
+    content_md: tabbed_content/code.md
   - title: Java
     language: java
     code_content: |
@@ -65,6 +65,9 @@ nested-python-tablist:
       print("hello world")
     text_content: |
       Output printing in Python3
+paths-tablist: 
+  - tabbed_content/code1.md
+  - tabbed_content/code2.md
 ---
 
 Tabbed content is pretty useful whenever you're writing
@@ -99,6 +102,9 @@ but what we have is pretty polished IMO.
 
 ## Demo
 
+
+### Tablist from YAML header
+
 In typical CS fashion, here you have the world's most famous program
 written in various different programming languages:
 
@@ -108,6 +114,11 @@ written in various different programming languages:
 ### Tablist based on collection
 
 {% include tablist coll=site.new_tabs %}
+
+
+### Tablist from paths
+
+{% include tablist paths=page.paths-tablist %}
 
 ## Usage
 

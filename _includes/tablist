@@ -1,11 +1,11 @@
 <!-- TABLIST CONTENT -->
 {% if include.id %}
   {% assign tablist = page[include.id] %}
-  {% assign tablist_name = "tablist-" | append: include.id %}
+  {% assign tablist_name = include.id %}
   {% assign yaml = true %}
 {% elsif include.coll %}
   {% assign tablist = include.coll %}
-  {% assign tablist_name = "tablist-" | append: include.coll.first.collection %}
+  {% assign tablist_name = include.coll.first.collection %}
   {% assign yaml = false %}
 {% else %}
   {% assign tablist = page.tablist %}
@@ -13,6 +13,7 @@
   {% assign yaml = true %}
 {% endif %}
 
+{% assign tablist_tag = "tablist-" | append: tablist_name %}
 
 
 <div class="tablist-container">
@@ -22,8 +23,8 @@
         <nav class="tablist-nav">
           <ul class="visible-links">
             {% for tab in tablist %}
-              {%comment%} Define class name {%endcomment%}
-              {% assign class = tablist_name | append: "-id-tab" %}
+              {%comment%} Define class(es) {%endcomment%}
+              {% assign class = tablist_tag | append: "-id-tab" %}
               {% if tab == tablist.first %}
                 {% assign class = class | append: " active" %}
               {% endif %}
@@ -32,13 +33,13 @@
               {% if yaml %}
                 {% assign tab_id = tab.title | replace: " ", "_" | downcase %}
               {% else %}
-                {% assign tab_id = tab.url | remove: include.coll.first.collection | remove: "/" %}
+                {% assign tab_id = tab.url | remove: tablist_name | remove: "/" | downcase %}
               {% endif %}
 			    
               <li class="tablist__menu-item">
                 <a
                   class="{{ class }}"
-                  onClick="tablistClickHandle(event, '{{ tablist_name }}', '{{ tab_id }}')"
+                  onClick="tablistClickHandle(event, '{{ tablist_tag }}', '{{ tab_id }}')"
                 >
                 {{tab.title}}
                 </a>
@@ -58,9 +59,8 @@
     {% endif %}
     
     {% if yaml %}
-      {% include tab_yaml id=include.id tablist_name=tablist_name tab=tab display=display %}
+      {% include tab_yaml id=include.id tablist_tag=tablist_tag tab=tab display=display %}
     {% else %}
-      {% assign tab_id = tab.url | remove: include.coll.first.collection | remove: "/" %}
       {% include tab_collection tablist_name=tablist_name tab_id=tab_id tab=tab display=display %}
     {% endif %}
   {% endfor %}
