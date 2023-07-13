@@ -65,9 +65,6 @@ nested-python-tablist:
       print("hello world")
     text_content: |
       Output printing in Python3
-paths-tablist: 
-  - tabbed_content/code1.md
-  - tabbed_content/code2.md
 ---
 
 Tabbed content is pretty useful whenever you're writing
@@ -115,10 +112,6 @@ written in various different programming languages:
 
 {% include tablist coll=site.new_tabs %}
 
-
-### Tablist from paths
-
-{% include tablist paths=page.paths-tablist %}
 
 ## Usage
 

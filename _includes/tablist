@@ -2,17 +2,16 @@
 {% if include.id %}
   {% assign tablist = page[include.id] %}
   {% assign tablist_name = include.id %}
-  {% assign yaml = true %}
+  {% assign tab_incl = "tab_yaml" %}
 {% elsif include.coll %}
   {% assign tablist = include.coll %}
   {% assign tablist_name = include.coll.first.collection %}
-  {% assign yaml = false %}
+  {% assign tab_incl = "tab_collection" %}
 {% else %}
   {% assign tablist = page.tablist %}
   {% assign tablist_name = "tablist" %}
-  {% assign yaml = true %}
+  {% assign tab_incl = "tab_yaml" %}
 {% endif %}
-
 {% assign tablist_tag = "tablist-" | append: tablist_name %}
 
 
@@ -30,10 +29,10 @@
               {% endif %}
               
               {%comment%} Normalize tab ID {%endcomment%}
-              {% if yaml %}
-                {% assign tab_id = tab.title | replace: " ", "_" | downcase %}
-              {% else %}
+              {% if include.coll %}
                 {% assign tab_id = tab.url | remove: tablist_name | remove: "/" | downcase %}
+              {% else %}
+                {% assign tab_id = tab.title | replace: " ", "_" | downcase %}
               {% endif %}
 			    
               <li class="tablist__menu-item">
@@ -58,11 +57,7 @@
       {% assign display = "none" %}
     {% endif %}
     
-    {% if yaml %}
-      {% include tab_yaml id=include.id tablist_tag=tablist_tag tab=tab display=display %}
-    {% else %}
-      {% include tab_collection tablist_name=tablist_name tab_id=tab_id tab=tab display=display %}
-    {% endif %}
+    {% include {{ tab_incl }} %}
   {% endfor %}
 
 </div>
