@@ -7,14 +7,6 @@
   {% assign tablist = include.coll %}
   {% assign tablist_name = "tablist-" | append: include.coll.first.collection %}
   {% assign yaml = false %}
-  
-  <ul>
-    {% for tab in tablist %}
-      {% assign x = tab.url | remove: include.coll.first.collection | remove: "/" %}
-      <li>{{ x }}</li>
-    {% endfor %}
-  </ul>
-  
 {% else %}
   {% assign tablist = page.tablist %}
   {% assign tablist_name = "tablist" %}
